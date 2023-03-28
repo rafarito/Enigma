@@ -11,7 +11,7 @@ public class Enigma {
         tam = frase.length();
         frase = frase.toUpperCase();
         for(i = 0;i < tam;i++){
-            cript += eng.rotor(1, frase.charAt(i));
+            cript += eng.rotor(1, frase.charAt(i),1); //verifique essa logica
         }
         System.out.println(cript);
     }

@@ -6,12 +6,18 @@ public class Rotor {
     private static final String rotor3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
     private static final String rotor4 = "ESOVPZJAYQUIRHXLNFTGKDCMWB";
     private static final String rotor5 = "VZBRGITYUPSDNHLXAWMJQOFECK";
-    private static final String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String alfabeto = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // o processo inverso dos rotores deve ser bem pensado
 
-    public char rotor(int type, char press){
+    private int pos[] = new int[3];
+
+    public char rotor(int type, char press, int order){
         switch(type){
             case 1:
-                press =  rotor1.charAt(alfabeto.indexOf(press));
+                if(alfabeto.indexOf(press) + pos[order - 1] < 26){
+                    press =  rotor1.charAt(alfabeto.indexOf(press) + pos[order - 1]);
+                }else{
+                    press =  rotor1.charAt((alfabeto.indexOf(press) + pos[order - 1]) - 26); //verifique essa logica *rigor*
+                }
             break;
             case 2:
                 press =  rotor2.charAt(alfabeto.indexOf(press));
@@ -28,4 +34,5 @@ public class Rotor {
         }
         return press;
     }
+
 }
